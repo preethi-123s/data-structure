@@ -1,0 +1,21 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    int *ptr1, *ptr2, *ptr3, *largest;
+    printf("Enter three number:");
+    scanf("%d %d %d",&a,&b,&c);
+    ptr1=&a;
+    ptr2=&b;
+    ptr3=&c;
+    
+    largest=ptr1;
+        if(*ptr2>*largest){
+            largest=ptr2;
+        }
+        if(*ptr3>*largest){
+            largest=ptr3;
+        }
+        printf("The largest number is:%d\n",*largest);
+        return 0;
+    }
