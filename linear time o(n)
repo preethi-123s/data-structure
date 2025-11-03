@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+    int n, i;
+    long long sum = 0;
+    clock_t start, end;
+    double time_taken;
+
+    printf("Enter size n: ");
+    scanf("%d", &n);
+
+    start = clock();
+
+    // Linear loop O(n)
+    for (i = 0; i < n; i++) {
+        sum += i;
+    }
+
+    end = clock();
+
+    time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+    printf("Sum = %lld\n", sum);
+    printf("Time taken for O(n) = %f seconds\n", time_taken);
+
+    return 0;
+}
