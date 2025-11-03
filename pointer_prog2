@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main() {
+    int num = 10;     // Declare an integer variable
+    int *ptr = &num;  // Declare a pointer to num
+
+    printf("Value of num: %d\n", num);      // Print num
+    printf("Value using pointer: %d\n", *ptr); // Print value using pointer
+
+    return 0;
+}
