@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int i, j;
+    int **a;
+
+    a = (int **)malloc(2 * sizeof(int *)); // 2 rows
+    for (i = 0; i < 2; i++)
+        a[i] = (int *)malloc(3 * sizeof(int)); // 3 columns
+
+    printf("Enter 6 elements:\n");
+    for (i = 0; i < 2; i++)
+        for (j = 0; j < 3; j++)
+            scanf("%d", &a[i][j]);
+
+    printf("Matrix:\n");
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 3; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+
+    for (i = 0; i < 2; i++)
+        free(a[i]);
+    free(a);
+    return 0;
+}
