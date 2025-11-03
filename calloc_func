@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i;
+    int *arr;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // Allocate memory using calloc
+    arr = (int *)calloc(n, sizeof(int));
+
+    // Check if memory allocation was successful
+    if (arr == NULL) {
+        printf("Memory not allocated!\n");
+        return 1;
+    }
+
+    // Print default values (calloc initializes to 0)
+    printf("Default values (initialized by calloc):\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    // Input new values
+    printf("\nEnter %d elements:\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    // Display entered values
+    printf("You entered:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    // Free the allocated memory
+    free(arr);
+
+    return 0;
+}
