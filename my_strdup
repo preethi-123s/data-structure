@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* my_strdup(char *src) {
+    if (src == NULL) return NULL;
+
+    // Step 1: Find length of src using pointer arithmetic
+    char *p = src;
+    while (*p != '\0')
+        p++;
+    int len = p - src;  // length of string (not counting '\0')
+
+    // Step 2: Allocate memory for the new string (+1 for '\0')
+    char *dup = (char *)malloc((len + 1) * sizeof(char));
+    if (dup == NULL)
+        return NULL;  // allocation failed
+
+    // Step 3: Copy characters using pointer arithmetic
+    char *d = dup;
+    while (*src != '\0') {
+        *d = *src;
+        d++;
+        src++;
+    }
+    *d = '\0';  // null-terminate the duplicate
+
+    return dup;
+}
+
+int main() {
+    char str[] = "Hello, world!";
+    char *copy = my_strdup(str);
+
+    if (copy != NULL) {
+        printf("Original: %s\n", str);
+        printf("Duplicate: %s\n", copy);
+        free(copy);  // always free dynamically allocated memory
+    } else {
+        printf("Memory allocation failed!\n");
+    }
+
+    return 0;
+}
