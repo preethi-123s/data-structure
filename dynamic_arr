@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int *data;
+    int size;
+    int cap;
+} DynArray;
+
+void push(DynArray *a, int val) {
+    if (a->size == a->cap) {
+        a->cap = a->cap ? a->cap * 2 : 1;
+        a->data = realloc(a->data, a->cap * sizeof(int));
+    }
+    a->data[a->size++] = val;
+}
+
+int main() {
+    DynArray a = {NULL, 0, 0};
+    for (int i = 0; i < 10; i++) push(&a, i);
+    for (int i = 0; i < a.size; i++) printf("%d ", a.data[i]);
+    free(a.data);
+}
