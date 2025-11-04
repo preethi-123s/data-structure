@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n1, n2;
+    scanf("%d%d", &n1, &n2);
+    int *a = malloc(n1 * sizeof(int));
+    int *b = malloc(n2 * sizeof(int));
+    for (int i = 0; i < n1; i++) scanf("%d", a+i);
+    for (int i = 0; i < n2; i++) scanf("%d", b+i);
+
+    int *merged = NULL, size = 0;
+    int i=0,j=0;
+    while (i<n1 || j<n2) {
+        int val = (j==n2 || (i<n1 && a[i]<b[j])) ? a[i++] : b[j++];
+        if (size==0 || merged[size-1]!=val) {
+            merged = realloc(merged, (size+1)*sizeof(int));
+            merged[size++] = val;
+        }
+    }
+    for (int k=0;k<size;k++) printf("%d ", merged[k]);
+    free(a); free(b); free(merged);
+}
