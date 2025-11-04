@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int students;
+    scanf("%d", &students);
+    int **marks = malloc(students * sizeof(int*));
+    int *counts = malloc(students * sizeof(int));
+    float *avg = malloc(students * sizeof(float));
+
+    for (int i = 0; i < students; i++) {
+        printf("Subjects for student %d: ", i+1);
+        scanf("%d", &counts[i]);
+        marks[i] = malloc(counts[i]*sizeof(int));
+        int sum = 0;
+        for (int j = 0; j < counts[i]; j++) {
+            scanf("%d", &marks[i][j]);
+            sum += marks[i][j];
+        }
+        avg[i] = (float)sum / counts[i];
+    }
+
+    int topper = 0;
+    for (int i=1; i<students; i++)
+        if (avg[i] > avg[topper]) topper = i;
+
+    printf("Topper: Student %d (%.2f)\n", topper+1, avg[topper]);
+
+    for (int i=0; i<students; i++) free(marks[i]);
+    free(marks); free(counts); free(avg);
+}
